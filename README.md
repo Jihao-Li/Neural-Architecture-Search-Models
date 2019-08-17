@@ -1,6 +1,6 @@
 # NAS-Models
 This is my summary of some famous NAS models(in progress). At present, only the Chinese version is available.
-# These models are organized in chronological order(arXiv v1)
+# Organized in chronological order(arXiv v1)
 ## figure1
 ![](https://github.com/JihaoLee/NAS-Models/blob/master/figure1.png)
 ## figure2
