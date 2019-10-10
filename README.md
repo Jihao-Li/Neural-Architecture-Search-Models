@@ -34,7 +34,7 @@ This is my summary of some famous NAS models(in progress). At present, only the 
 | ChamNet | 不更新参数。如果搜索到的结构性能不佳，则会通过进化算法进行选择，优胜劣汰 |
 | SNAS | 全部路径的权重 |
 | SPOS | 一条路径的权重 |
-| Randomly Wired | 全部路径的权重。但随机图内部并不是所有结点之间都有连线，所以该方法的连接关系可能会比其它用全部路径的方法简单，也可能会更复杂 |
+| Randomly Wired | 先产生随机图，随机图产生之后，网络结构就固定下来，之后只进行训练。 |
 | Single-Path NAS | 一条路径的权重。但该路径是搜索空间中k和e值最大的那条 |
 | DenseNAS | 全部路径的权重 |
 | FairNAS | 多个一条路径的权重，串行或并行 | 
@@ -53,7 +53,7 @@ This is my summary of some famous NAS models(in progress). At present, only the 
 | ChamNet | 是。先取部分ImageNet数据集，每个类别取50个样本，训练predictors(这里比较费时间，但该处的训练是one-time cost的，后边直接使用predictors，不再训练它们)，然后再在ImageNet上进行网络搜索 |
 | SNAS | 是。cifar10迁移到ImageNet(同DARTS) |
 | SPOS | 是。直接从ImageNet上进行搜索 |
-| Randomly Wired | 是。直接从ImageNet上进行搜索 |
+| Randomly Wired | 是。网络结构固定后，在ImageNet上进行训练 |
 | Single-Path NAS | 是。直接从ImageNet上进行搜索 |
 | DenseNAS | 是。ImageNet代理数据集迁移到ImageNet(同FBNet) |
 | FairNAS | 是。直接从ImageNet上进行搜索 | 
@@ -72,7 +72,7 @@ This is my summary of some famous NAS models(in progress). At present, only the 
 | ChamNet | 文中未说明，但应该需要retrain。进化算法搜索网络结构时并没有用梯度下降优化网络权重，所以应该需要retrain(该结论不是很确定) |
 | SNAS | 是。抛弃搜索权重，重新定义Cell的堆叠层数，分别在cifar10和ImageNet上进行retrain |
 | SPOS | 是。搜索时不更新权重，权重都是一开始被初始化的，进化算法找到最好的super-net后再在ImageNet上进行retrain |
-| Randomly Wired | 否。搜索的过程，同时也是训练网络权重的过程 |
+| Randomly Wired | 否。生成随机图的过程就是搜索的过程，随机图确定后再进行训练 |
 | Single-Path NAS | 是。抛弃搜索权重，根据学得的阈值导出super-net，再在ImageNet上进行retrain(该结论不是很确定) |
 | DenseNAS | 是。抛弃搜索权重，根据维特比算法导出最优super-net，在ImageNet上进行retrain |
 | FairNAS | 原文中未说明 | 
